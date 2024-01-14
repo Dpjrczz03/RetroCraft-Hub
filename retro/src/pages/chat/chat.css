@@ -1,0 +1,24 @@
+
+.chatmaincontainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+}
+.leftchat,.rightchat{
+    display: flex;
+    flex-direction: column;
+    overflow:auto;
+    gap: 1rem;
+    height: 70%;
+    width: 40%;
+    border: 1px solid black;
+}
+.chatlist{
+    padding-inline: 10px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
