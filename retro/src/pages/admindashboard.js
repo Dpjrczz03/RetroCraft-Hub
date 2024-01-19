@@ -14,17 +14,31 @@ import Bigcard from "@/components/bigcard";
 import Image from "next/image";
 
 function Admindashboard(props) {
+    const [master,setMaster]=useState(null)
+    const {data: session} = useSession()
+    const [userinfo, setuserinfo] = useState(null)
+    const [roleinfo, setroleinfo] = useState(null)
+    useEffect(() => {
+        axios.get('api/personalinfo').then((data) => {
+            const hero = (data.data).find(item=>item.email===session?.user?.email)
+            setuserinfo(hero)
+            setMaster(hero?.name.split(" ")[0])
+
+        })
+        axios.get('api/role').then((data) => {
+            setroleinfo((data.data).find(item => item.email === session?.user?.email))
+        })
+    }, [session])
     const [noti, setnoti] = useState(8)
-    const[x,setx]=useState(0)
+    const [x, setx] = useState(0)
     if (noti > 9) {
         setnoti("9+")
     }
-    const {data: session} = useSession()
     const router = useRouter()
     const [roledata, setRoledata] = useState([])
-    const [jobdata, setjobdata]=useState([])
-    const [currname, setcurrname]=useState(null)
-    const [currrole, setcurrrole]=useState(null)
+    const [jobdata, setjobdata] = useState([])
+    const [currname, setcurrname] = useState(null)
+    const [currrole, setcurrrole] = useState(null)
 
     if (session === null) {
         router.push('/loginpage')
@@ -45,39 +59,38 @@ function Admindashboard(props) {
         })
 
 
-
     }, [])
-   //  const getroledata=()=>{
-   //      // console.log("function called")
-   //      for(var j=0;j<roledata.length;j++){
-   //          console.log(roledata[j].email)
-   //          setx(x+1)
-   //          if (roledata[j].email === session?.user?.email){
-   //              setcurrrole(roledata[j].name)
-   //
-   //              console.log(roledata[j].name)
-   //              break;
-   //          }
-   //      }
-   //  }
-   //
-   //
-   // const getjobdata=()=>{
-   //      for(var i=0;i<jobdata.length;i++){
-   //          // console.log(jobdata[i].user)
-   //          setx(x+1)
-   //          if (jobdata[i].email === session?.user?.email){
-   //              setcurrname(jobdata[i].name)
-   //              console.log(jobdata[i].name)
-   //              break;
-   //          }
-   //      }
-   //  }
-   //
-   //  if(x<5) {
-   //      getjobdata()
-   //      getroledata()
-   //  }
+    //  const getroledata=()=>{
+    //      // console.log("function called")
+    //      for(var j=0;j<roledata.length;j++){
+    //          console.log(roledata[j].email)
+    //          setx(x+1)
+    //          if (roledata[j].email === session?.user?.email){
+    //              setcurrrole(roledata[j].name)
+    //
+    //              console.log(roledata[j].name)
+    //              break;
+    //          }
+    //      }
+    //  }
+    //
+    //
+    // const getjobdata=()=>{
+    //      for(var i=0;i<jobdata.length;i++){
+    //          // console.log(jobdata[i].user)
+    //          setx(x+1)
+    //          if (jobdata[i].email === session?.user?.email){
+    //              setcurrname(jobdata[i].name)
+    //              console.log(jobdata[i].name)
+    //              break;
+    //          }
+    //      }
+    //  }
+    //
+    //  if(x<5) {
+    //      getjobdata()
+    //      getroledata()
+    //  }
     return (
         // <>
         //     <Nav/>
@@ -107,7 +120,7 @@ function Admindashboard(props) {
             <Dashboardnav/>
             <div className="dashpage w-full gap-10 pl-[38px] pr-[20px] flex flex-col overflow-auto pb-[100px]">
                 <div className="dashnav flex  pt-[20px]  gap-2 justify-between items-center w-full">
-                    <div className={"text-[40px] font-bold"}>Welcome, Dhruv👋</div>
+                    <div className={"text-[40px] font-bold"}>Welcome, {master}👋</div>
                     <div className="dashsearchfield">
                         <input className="w-[25vw] min-w-[220px] rounded-full p-[16px] dashsearch" type="text"
                                placeholder="Search for crew members..."/>
@@ -145,16 +158,18 @@ function Admindashboard(props) {
                         </div>
                         <div className="personalinfodash">
                             <div className="flex items-center justify-between gap-[10px]">
-                                {(session?.user?.image)?(<img className="rounded-full dashimg " src={session?.user?.image}/>):(<Image className="rounded-full dashimg"
-                                               src="/image 11.png" width={50}
-                                               height={50}/>)}
+                                {(session?.user?.image) ? (
+                                    <img className="rounded-full dashimg " src={session.user.image}/>) : (
+                                    <Image className="rounded-full dashimg"
+                                           src="/image 11.png" width={50}
+                                           height={50}/>)}
 
                                 <div className="flex flex-col items-start justify-center">
                                     <div className="font-semibold namedash">
-                                        Dhruv Pankaj
+                                        {userinfo?.name}
                                     </div>
                                     <div className="titledash">
-                                        Producer
+                                        {roleinfo?.role}
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +177,7 @@ function Admindashboard(props) {
                     </div>
 
                 </div>
-                <div className="statusbar pr-[64px] flex items-center justify-between">
+                <div className="statusbar pr-[64px] flex items-center justify-between gap-[1rem]">
                     <div className="statusitem">
                         <div
                             className="bg-[#4E36E2] flex items-center justify-between rounded-[20px] gap-[2vw] px-[24px]">
@@ -241,7 +256,7 @@ function Admindashboard(props) {
                     </div>
                 </div>
                 <div className="w-full flex justify-between gap-[28px] pr-[64px]">
-                    <div><Bigcard currname={currname} currrole={currrole}/></div>
+                    <div><Bigcard currname={userinfo?.name} currrole={roleinfo?.role}/></div>
                     <div className="flex flex-col gap-[14px]">
                         <div className="text-[22px] font-semibold flex items-center justify-between pr-[20px]">
                             <div>
@@ -261,12 +276,12 @@ function Admindashboard(props) {
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-y-[28px]">
-                            <Jobcard currname={currname} currrole={currrole}/>
-                            <Jobcard currname={currname} currrole={currrole}/>
-                            <Jobcard currname={currname} currrole={currrole}/>
-                            <Jobcard currname={currname} currrole={currrole}/>
-                            <Jobcard currname={currname} currrole={currrole}/>
-                            <Jobcard currname={currname} currrole={currrole}/>
+                            <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                            <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                            <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                            <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                            <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                            <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
 
                         </div>
                     </div>
@@ -289,14 +304,14 @@ function Admindashboard(props) {
                         </div>
                     </div>
                     <div className="justify-between flex flex-wrap items-center gap-y-[50px]">
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
-                         <Jobcard currname={currname} currrole={currrole}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
+                        <Jobcard currname={userinfo?.name} currrole={roleinfo?.role}/>
 
                     </div>
                 </div>

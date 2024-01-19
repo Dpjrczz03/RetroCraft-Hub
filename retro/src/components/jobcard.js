@@ -18,7 +18,7 @@ function Jobcard(props) {
                 </div>
             </div>
             <div className="carditem flex flex-col ">
-                <div className="text-[16 px] font-bold">Dhruv Pankaj</div>
+                <div className="text-[16 px] font-bold">{currname}</div>
                 <div className="secondary">India</div>
             </div>
             <div className="carditem flex items-center justify-between">

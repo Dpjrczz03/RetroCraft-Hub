@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import Sidebar from "@/components/sidebar";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {redirect} from "next/navigation";
 // import {Job} from "../../models/job.js";
 
 export default function Home() {
@@ -30,7 +31,14 @@ export default function Home() {
     const [showexp, setShowexp] = useState(false)
 
 
+    const {data: session} = useSession()
+    const router = useRouter()
+     if (session === null) {
+        router.push('/loginpage')
+    }
+
     useEffect(() => {
+
         fetchuserdata()
         fetcheducations()
         fetchexperiences()
@@ -163,11 +171,6 @@ export default function Home() {
     }
     const handleinputfocus6 = () => {
         setFocushai6(true)
-    }
-    const {data: session} = useSession()
-    const router = useRouter()
-    if (session === null) {
-        router.push('/loginpage')
     }
     const [c, setC] = useState(0)
     const handleeduclick = async () => {

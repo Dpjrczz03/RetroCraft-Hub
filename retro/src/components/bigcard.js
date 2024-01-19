@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSession} from "next-auth/react";
 
 function Bigcard(props) {
     const {data: session} = useSession()
+    const currname = props.currname
+    const currrole = props.currrole
+
     return (
         <div
             className="bc w-[250px] bg-white rounded-[10px] flex flex-col items-center justify-center py-[40px] px-[12px] relative">
             <div className="bcitem"><img className="rounded-full w-[115px]" src={session?.user?.image}/></div>
             <div className="bcitem flex flex-col items-center justify-center mt-[8px]">
-                <div className="text-[20px] font-semibold">Dhruv Pankaj</div>
-                <div className="text-[16px] font-semibold secondarycolor">Producer</div>
+                <div className="text-[20px] font-semibold">{currname}</div>
+                <div className="text-[16px] font-semibold secondarycolor">{currrole}</div>
             </div>
             <div className="font-medium text-[18px] w-full mt-[20px] flex flex-col gap-[15px] ">
                 <div> Recent Activities</div>

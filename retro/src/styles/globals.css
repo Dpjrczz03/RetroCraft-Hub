@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 
-
 :root {
-  --body-bg: #FAFAFA;
-  --nav-bg: #0452D8;
+    --body-bg: #FAFAFA;
+    --nav-bg: #0452D8;
 }
+
 /*@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');*/
 body {
     /*font-family: "";*/
@@ -115,7 +115,7 @@ label {
 }
 
 .maincontainer {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     display: flex;
     gap: 0;
 }
@@ -177,7 +177,16 @@ label {
 }
 
 .loginbox {
-    width: 27rem;
+    width: 27vw;
+    min-width: 20rem;
+}
+
+@media (max-width: 910px) {
+    .right {
+        display: none;
+    }
+
+
 }
 
 .welcomeback {
@@ -275,8 +284,9 @@ label {
     font-family: "Public Sans";
     background: #FAFAFA;
 }
-.sidepage{
-    overflow:hidden;
+
+.sidepage {
+    overflow: hidden;
 }
 
 .sidebar {
@@ -330,7 +340,8 @@ label {
     padding-top: 8rem;
     /*border: 1px solid black;*/
 }
-.imgbox{
+
+.imgbox {
     width: 50%;
     padding: 0;
 }
@@ -417,6 +428,7 @@ label {
 
 
 }
+
 .prevbtndis {
 
     /*background: #005EFE;*/
@@ -448,12 +460,13 @@ label {
     transform: scale(0.55);
     z-index: 3;
 }
-.sidepage{
+
+.sidepage {
     /*margin-left: 20rem;*/
     overflow-x: hidden;
 }
 
-.personalcontainer,professionalcontainer {
+.personalcontainer, professionalcontainer {
     padding-top: 8vw;
     padding-left: calc(20rem + 12vw);
 
@@ -479,7 +492,8 @@ label {
     /*min-width: 50px;*/
 
 }
-.piinput:focus{
+
+.piinput:focus {
     /*color: #005EFE;*/
     background: #EDF3FF;
     outline: none;
@@ -508,7 +522,8 @@ label {
 .chotuinputage {
     width: 35%;
 }
-.chotuinputgend{
+
+.chotuinputgend {
     width: 100%;
 }
 
@@ -528,8 +543,9 @@ label {
     margin-top: 0.6rem;
     /*padding-inline: 0.8rem;*/
 }
-.labelpifocus{
-      font-size: 16px;
+
+.labelpifocus {
+    font-size: 16px;
     margin-left: 4px;
     margin-top: 0.6rem;
     color: #005EFE;
@@ -539,7 +555,7 @@ label {
 
     font-size: 16px;
     padding-inline: 0.6rem;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
     margin: 0;
     width: 80%;
@@ -547,121 +563,153 @@ label {
     width: 100%;
     height: 2.8rem;
     background: #FFFFFF;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
-.inputcontainer{
+
+.inputcontainer {
     overflow: auto;
     height: 20rem;
 }
-.selectiontext1{
+
+.selectiontext1 {
     max-width: 40%;
     font-size: 16px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
 }
-.profbox{
-     padding-top: 8vw;
+
+.profbox {
+    padding-top: 8vw;
     padding-left: calc(20rem + 12vw);
 
     width: auto;
     height: 100vh;
 
 }
-.eduinputcontainer{
-width: 100%;
-}
-.topinputrow,.bottominputrow{
+
+.eduinputcontainer {
     width: 100%;
 }
-.profinput{
+
+.topinputrow, .bottominputrow {
     width: 100%;
 }
-.profinput1{
+
+.profinput {
+    width: 100%;
+}
+
+.profinput1 {
     width: 45%;
 }
-.piinputarea{
+
+.piinputarea {
     width: 25%;
     min-width: 17rem;
     /*margin-right: 2rem;*/
 
 }
-.piinputarea1{
+
+.piinputarea1 {
     width: 25%;
     min-width: 17rem;
 }
-.fade{
+
+.fade {
     animation: fade 250ms ease-in-out;
 }
-@keyframes fade {
-  from{
-    opacity: 0.5;
-  }
-  to {
 
-    opacity: 1;
-  }
+@keyframes fade {
+    from {
+        opacity: 0.5;
+    }
+    to {
+
+        opacity: 1;
+    }
 }
-.plus{
+
+.plus {
     transform: scale(1.14);
 }
-.btnsection{
+
+.btnsection {
     margin-top: 1.8rem;
 }
+
 /*.profboxcontainer{*/
 /*    border: 1px solid black;*/
 /*    height: 25rem;*/
 /*}*/
-.badadibba{
+.badadibba {
     padding-right: 40px;
     height: 350px;
     width: 53%;
     /*border: 1px solid black;*/
 }
-.readcontainer{
+
+.readcontainer {
     margin-top: 10px;
     /*height: 100px;*/
     padding-left: 7px;
     border-left: 2.5px solid #005EFE;
 }
-.degree{
-    font-weight:600;
+
+.degree {
+    font-weight: 600;
 }
-
-
-
-
-
-
-
-
-
 
 
 nav {
     color: white;
-  background: var(--nav-bg);
-  position: sticky;
+    background: var(--nav-bg);
+    position: sticky;
     width: 17rem;
-  top: 0;
-  left: 0;
-height: 100vh;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+.chatnav {
+    color: white;
+    background: var(--nav-bg);
+    position: sticky;
+    width: 4rem;
+    top: 0;
+    left: 0;
+    height: 100vh;
 }
 
 .nav-list {
-  margin: 0;
-  list-style: none;
+    margin: 0;
+    list-style: none;
     padding-top: 4rem;
-  /*display: grid;*/
-  gap:0.5rem;
+    /*display: grid;*/
+    gap: 0.5rem;
 }
-.active{
+
+.nav-list1 {
+    margin: 0;
+    list-style: none;
+    padding-top: 4rem;
+    /*display: grid;*/
+    gap: 0.5rem;
+}
+
+.active {
     color: black;
 }
 
 .nav-list div {
-  display: block;
-  text-decoration: none;
+    display: block;
+    text-decoration: none;
 }
+
+.nav-list1 div {
+    display: block;
+    text-decoration: none;
+}
+
 /*.bad{*/
 /*    padding-right: -4px;*/
 /*}*/
@@ -669,48 +717,91 @@ height: 100vh;
 .nav-list li {
     display: flex;
     gap: 1.5rem;
-    justify-content:start;
+    justify-content: start;
     align-items: center;
-  padding-block: 1rem;
-  padding-inline: 2rem;
-  margin-inline: 1rem 0;
-  /* prevent animation glitch on right side */
-  box-shadow: 2px 0 0 var(--body-bg);
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    margin-inline: 1rem 0;
+    /* prevent animation glitch on right side */
+    box-shadow: 2px 0 0 var(--body-bg);
+}
+
+.nav-list1 li {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: start;
+    align-items: center;
+    padding-block: 1rem;
+    padding-inline: 0.7rem;
+    margin-inline: 0.3rem 0;
+    /* prevent animation glitch on right side */
+    box-shadow: 2px 0 0 var(--body-bg);
 }
 
 .nav-list li.active {
-  view-transition-name: nav;
-  background: var(--body-bg);
-  position: relative;
-  z-index: -1;
-  border-radius: 100vw 0 0 100vw;
+    view-transition-name: nav;
+    background: var(--body-bg);
+    position: relative;
+    z-index: -1;
+    border-radius: 100vw 0 0 100vw;
 }
 
+.nav-list1 li.active {
+    view-transition-name: nav;
+    background: var(--body-bg);
+    position: relative;
+    z-index: -1;
+    border-radius: 100vw 0 0 100vw;
+}
 
 
 .nav-list li.active::before,
 .nav-list li.active::after {
-  --border-radius: 1rem;
-  content: "";
-  position: absolute;
-  width: var(--border-radius);
-  height: var(--border-radius);
-  right: 0rem;
-  background: var(--nav-bg);
+    --border-radius: 1rem;
+    content: "";
+    position: absolute;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    right: 0rem;
+    background: var(--nav-bg);
+}
+
+.nav-list1 li.active::before,
+.nav-list1 li.active::after {
+    --border-radius: 1rem;
+    content: "";
+    position: absolute;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    right: 0rem;
+    background: var(--nav-bg);
 }
 
 .nav-list li.active::before {
-  border-radius: 0 0 var(--border-radius);
-  top: calc(var(--border-radius) * -1);
-  box-shadow: 5px 5px 0 5px var(--body-bg);
+    border-radius: 0 0 var(--border-radius);
+    top: calc(var(--border-radius) * -1);
+    box-shadow: 5px 5px 0 5px var(--body-bg);
+}
+
+.nav-list1 li.active::before {
+    border-radius: 0 0 var(--border-radius);
+    top: calc(var(--border-radius) * -1);
+    box-shadow: 5px 5px 0 5px var(--body-bg);
 }
 
 .nav-list li.active::after {
-  border-radius: 0 var(--border-radius) 0 0;
-  bottom: calc(var(--border-radius) * -1);
-  box-shadow: 5px -5px 0 5px var(--body-bg);
+    border-radius: 0 var(--border-radius) 0 0;
+    bottom: calc(var(--border-radius) * -1);
+    box-shadow: 5px -5px 0 5px var(--body-bg);
 }
-.navtitledash{
+
+.nav-list1 li.active::after {
+    border-radius: 0 var(--border-radius) 0 0;
+    bottom: calc(var(--border-radius) * -1);
+    box-shadow: 5px -5px 0 5px var(--body-bg);
+}
+
+.navtitledash {
     padding-top: 8px;
     padding-left: 8px;
     padding-bottom: 8px;
@@ -719,84 +810,107 @@ height: 100vh;
     border-radius: 0px 0px 0px 12px;
 
 
-
 }
-.fy{
+
+.fy {
     position: relative;
     z-index: -1;
 }
-.kaalu::after{
-     --border-radius: 1rem;
-  content: "";
-  position: absolute;
-  width: var(--border-radius);
-  height: var(--border-radius);
-  right: 0rem;
-     border-radius: 0 var(--border-radius) 0 0;
-  bottom: calc(var(--border-radius) * -1);
-  box-shadow: 5px -5px 0 5px var(--body-bg);
+
+.kaalu::after {
+    --border-radius: 1rem;
+    content: "";
+    position: absolute;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    right: 0rem;
+    border-radius: 0 var(--border-radius) 0 0;
+    bottom: calc(var(--border-radius) * -1);
+    box-shadow: 5px -5px 0 5px var(--body-bg);
 }
 
 
-.admindashboard{
+.admindashboard {
     overflow-y: hidden;
 }
-.dashsearch{
+
+.dashsearch {
     /*position: relative;*/
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
-.dashsearch:focus{
+
+.dashsearch:focus {
     outline: none;
     border: 2px solid #005EFE;
     padding-left: 0.95em;
 }
-.dashsearch::placeholder{
+
+.dashsearch::placeholder {
     font-size: 16px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
 }
-.dashpage{
+
+.dashpage {
 
 }
-.searchbtndash{
+
+.searchbtndash {
     position: absolute;
     top: 12%;
     right: 5px;
 
 
 }
-.dashsearchfield{
+
+.dashsearchfield {
     position: relative;
 }
 
-.rightsidedash{
+.rightsidedash {
     gap: 1.5rem;
 }
+
 .dashimg {
     width: 50px;
 }
-.titledash{
+
+.titledash {
     line-height: 1.2em;
     font-size: 12px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
 }
-.secondary{
+
+.secondary {
     font-size: 14px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
 }
-.secondarycolor{
-    color: rgba(0,0,0,0.6);
+
+.secondarycolor {
+    color: rgba(0, 0, 0, 0.6);
 }
-.namedash{
+
+.namedash {
     font-size: 14px;
     line-height: 1.2em;
 }
-.notiback{
+
+.notiback {
     line-height: 1em;
     border: 1px solid #0452D8;
 }
-.statusitem{
+
+.statusitem {
     color: white;
 }
-.statuscardtitle{
+
+.statuscardtitle {
     text-align: right;
 }
+
+.messagepara {
+    word-wrap: break-word;
+}
+
+/*#chatbox::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
