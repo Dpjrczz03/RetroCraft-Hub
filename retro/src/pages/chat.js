@@ -50,7 +50,7 @@ function Chat(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="text-[16px] font-medium pl-[10px] mt-[15px] flex flex-col items-start gap-[20px] overflow-auto ">
+                    <div className="text-[16px] font-semibold pl-[10px] mt-[15px] flex flex-col items-start gap-[20px] overflow-auto ">
                         {userdata.map((ud) => ((<div className="chatlist" onClick={(e) => personclick(e, ud._id)}>
 
                             <div className="cursor-pointer">{ud.name}</div>

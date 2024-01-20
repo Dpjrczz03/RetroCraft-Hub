@@ -51,6 +51,8 @@ function ChatId(props) {
         return key.replace(/:/g, '__')
     }
 
+    // console.log(process.env.PUSHER_KEY)
+
     // const scrollbottom = () => {
     //     setchatloading(true)
     //     var objDiv = document.getElementById("chatbox");
@@ -67,7 +69,7 @@ function ChatId(props) {
 
     useEffect(() => {
         const pusher = new Pusher(
-            "1fd80f1f7c0178fdc228",
+            process.env.NEXT_PUBLIC_PUSHER_KEY,
             {
                 cluster: 'ap2',
                 debug: true,
@@ -182,7 +184,7 @@ function ChatId(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="text-[16px] font-medium pl-[10px] mt-[15px] flex flex-col items-start gap-[20px] overflow-auto ">
+                    <div className="text-[16px] font-semibold pl-[10px] mt-[15px] flex flex-col items-start gap-[20px] overflow-auto ">
                         {userdata.map((ud) => ((<div className="chatlist" onClick={(e) => personclick(e, ud._id)}>
 
                             <div className="cursor-pointer">{ud.name}</div>
@@ -202,7 +204,7 @@ function ChatId(props) {
                                 <div>{user2?.name}</div>
                             </div>
                             <div id="chatbox"
-                                 className="w-[100%] h-[80vh] overflow-auto chatbox flex flex-col gap-2 pt-[10px]">
+                                 className="w-[100%] h-[80vh] overflow-auto chatbox flex flex-col gap-1 pt-[10px]">
                                 {chatloading ? (<></>) : (
 
                                     <>
@@ -215,8 +217,8 @@ function ChatId(props) {
                                                     {/*</div>*/}
                                                     <div className="flex flex-row-reverse w-full">
                                                         <div
-                                                            className="px-[8px] py-[4px] bg-[#0452D8] text-white text-[16px] rounded-[5px] max-w-[50%]">
-                                                            <p className="messagepara">{msg.message}</p>
+                                                            className="px-[8px] py-[8px] bg-[#0452D8] text-[#FAFAFA] text-[14px] rounded-[12px] max-w-[50%]">
+                                                            <p className="messagepara font-semibold">{msg.message}</p>
                                                         </div>
                                                     </div>
 
@@ -234,8 +236,8 @@ function ChatId(props) {
                                                             {/*</div>*/}
                                                             <div className="flex w-full">
                                                                 <div
-                                                                    className="px-[8px] py-[4px] bg-[rgba(0,0,0,0.7)] text-white text-[16px] rounded-[5px] max-w-[50%]">
-                                                                    <p className="messagepara">{msg.message}</p>
+                                                                    className="px-[8px] py-[8px] bg-[#FFFFFF] text-[rgba(0,0,0,0.8)] text-[14px] rounded-[12px] max-w-[50%]">
+                                                                    <p className="messagepara font-semibold">{msg.message}</p>
                                                                 </div>
                                                             </div>
 
