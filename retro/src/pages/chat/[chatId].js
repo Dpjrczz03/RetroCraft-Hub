@@ -88,7 +88,7 @@ function ChatId(props) {
         channel.bind("chat-event", function (data) {
             setfilterroomdata((prevState) => [
                 ...prevState,
-                {chatid: data.chatid, message: data.message, email: data.email},
+                {chatid: data.chatid, message: data.message, email: data.email, time: data.time},
             ]);
         });
 
@@ -149,10 +149,23 @@ function ChatId(props) {
     const handlechatsubmit = async (e) => {
         e.preventDefault()
         const email = session?.user?.email
-        const messagedata = {chatid, message, email}
+        var hours = new Date().getHours()
+        var min = new Date().getMinutes()
+
+
+        var time = `${hours%24}:${min%60}`
+        if (hours<10){
+            time = `0${hours%24}:${min%60}`
+        }
+        if (min<10){
+            time = `${hours%24}:0${min%60}`
+        }
+        if(hours<10 && min<10){
+            time = `0${hours%24}:0${min%60}`
+        }
+        const messagedata = {chatid, message, email,time}
         if (message !== "") {
             await axios.post('../api/chat', messagedata)
-            // fetchdata()
             scrollToBottom()
 
             setmessage("")
@@ -197,37 +210,27 @@ function ChatId(props) {
                         {userdata.map((ud) => ((<div className="chatlist" onClick={(e) => personclick(e, ud._id)}>
 
                             <div className="cursor-pointer">{ud.name}</div>
-
-
                         </div>)))}
-
                     </div>
                 </div>
                 <div className="mainchatbox w-[43%] min-w-[7rem] relative">
                     <>
-
-
                         <div className="w-full flex flex-col justify-center gap-[10px]">
-
                             <div className="chattitle text-[20px] font-semibold flex items-center pl-[25px]">
                                 <div>{user2?.name}</div>
                             </div>
                             <div id="chatbox"
                                  className="w-[100%] h-[80vh] overflow-auto chatbox flex flex-col gap-1 pt-[10px]">
                                 {chatloading ? (<></>) : (
-
                                     <>
-
                                         {filterroomdata.map((msg) => (session?.user?.email === msg.email) ? (
                                             <div className="w-full px-[20px]">
                                                 <div className="flex flex-col items-end justify-between w-full">
-                                                    {/*<div>*/}
-                                                    {/*    <div className="text-black text-[12px]">{user1?.name}</div>*/}
-                                                    {/*</div>*/}
                                                     <div className="flex flex-row-reverse w-full">
                                                         <div
-                                                            className="px-[8px] py-[6px] bg-[#0452D8] text-[#FAFAFA] text-[14px] rounded-[8px] max-w-[65%]">
+                                                            className="px-[8px] py-[6px] bg-[#0452D8] text-[#FAFAFA] text-[14px] rounded-[8px] max-w-[65%] flex flex-col min-w-[80px]">
                                                             <p className="messagepara">{msg.message}</p>
+                                                            <div className="time1 w-full text-[10px]">{msg.time}</div>
                                                         </div>
                                                     </div>
 
@@ -245,8 +248,9 @@ function ChatId(props) {
                                                             {/*</div>*/}
                                                             <div className="flex w-full">
                                                                 <div
-                                                                    className="px-[8px] py-[6px] bg-[#FFFFFF] text-[rgba(0,0,0,0.8)] text-[14px] rounded-[8px] max-w-[65%]">
+                                                                    className="px-[8px] py-[6px] bg-[#FFFFFF] text-[rgba(0,0,0,0.8)] text-[14px] rounded-[8px] max-w-[65%] flex flex-col min-w-[80px]">
                                                                     <p className="messagepara">{msg.message}</p>
+                                                                    <div className="time w-full font-semibold text-[10px]">{msg.time}</div>
                                                                 </div>
                                                             </div>
 
@@ -256,13 +260,6 @@ function ChatId(props) {
                                             </>
 
                                         ))}
-                                        {filterroomdata.map((msg) => (session?.user?.email === msg.email) ? (
-                                            <></>
-                                        ) : (
-                                            <></>
-                                        ))}
-
-
                                     </>
 
 

@@ -914,3 +914,11 @@ nav {
 /*#chatbox::-webkit-scrollbar {*/
 /*    display: none;*/
 /*}*/
+.time{
+    text-align: right;
+    color: rgba(0,0,0,0.6);
+}
+.time1{
+     text-align: right;
+    color: #f3f3f3;
+}

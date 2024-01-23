@@ -1,36 +1,3 @@
-// import {mongooseConnect} from "../../../lib/mongoose";
-// import {Chat} from "../../../models/chat";
-// import {pusherServer} from "../../../lib/pusher";
-//
-// export default async function handle(req, res) {
-//     const method = req.method
-//     const {chatid,message,email}=req.body
-//     function toPusherKey(key) {
-//         return key.replace(/:/g, '__')
-//     }
-//
-//     await mongooseConnect()
-//     if (method === 'POST') {
-//
-//
-//         const chatinfo = await Chat.create({
-//             chatid,message,email
-//         })
-//
-//         res.json(chatinfo)
-//     }
-//     if(method === 'GET'){
-//         res.json( await Chat.find())
-//     }
-//     // if(method === 'POST') {
-//     //     await pusherServer.trigger(toPusherKey(`chat:${chatid}`), "incoming-message", {chatid, message, email})
-//     //
-//     //     res.json({status: 200});
-//     // }
-//
-//
-// }
-
 
 import {mongooseConnect} from "../../../lib/mongoose";
 import {Chat} from "../../../models/chat";
@@ -50,7 +17,9 @@ export default async function handle(req, res) {
     const method = req.method;
     await mongooseConnect()
     if (method === 'POST') {
-        const {chatid, message, email} = req.body;
+        const {chatid, message, email,time} = req.body;
+
+
 
         function chatHrefConstructor(chatid) {
             const sortedIds = [chatid.split('--')[0], chatid.split('--')[1]].sort()
@@ -65,10 +34,11 @@ export default async function handle(req, res) {
             chatid,
             message,
             email,
+            time,
         });
 
         const chatinfo = await Chat.create({
-            chatid, message, email
+            chatid, message, email,time
         })
 
 
@@ -76,7 +46,6 @@ export default async function handle(req, res) {
     }
 
     if (method === "GET") {
-        // await mongooseConnect();
         res.json(await Chat.find());
     }
 }

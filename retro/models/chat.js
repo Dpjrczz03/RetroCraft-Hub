@@ -4,7 +4,8 @@ const ModelSchema = new Schema({
     chatid:{type:String, required: true},
     message:{type: String},
     email:{type:String,required:true},
+    time: {type:String, required:true}
 
 
-},{timestamps: true})
+})
 export const Chat = models.Chat ||model('Chat',ModelSchema)
