@@ -9,11 +9,19 @@ import Chatnav from "@/components/chatnav";
 
 function ChatId(props) {
     const {data: session} = useSession()
+    const[activenav, setActivenav]=useState("")
+    const router = useRouter()
+    useEffect(() => {
+        if (router.pathname==='/chat/[chatId]'){
+            setActivenav("chat")
+        }
+    }, [router])
+
     const personclick = (e, userid) => {
+
 
         router.push(`/chat/${cuser._id}--${userid}`)
     }
-    const router = useRouter()
     const [cuser, setcuser] = useState(null)
     const [userdata, setUserdata] = useState([])
     useEffect(() => {
@@ -61,11 +69,11 @@ function ChatId(props) {
     // }
     var cd = [];
     const [message, setmessage] = useState("")
-    useEffect(()=>{
-        if(!session){
+    useEffect(() => {
+        if (session === null) {
             router.push('/loginpage')
         }
-    },[session])
+    }, [session])
 
     useEffect(() => {
         const pusher = new Pusher(
@@ -155,7 +163,7 @@ function ChatId(props) {
     return (
         <>
             <div className="absolute left-0 top-0">
-                <Chatnav/>
+                <Chatnav activenav = {activenav}/>
             </div>
             <div className="chatmaincontainer">
                 <div className="leftchat w-[22%]">
@@ -184,7 +192,8 @@ function ChatId(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="text-[16px] font-semibold pl-[10px] mt-[15px] flex flex-col items-start gap-[20px] overflow-auto ">
+                    <div
+                        className="text-[16px] font-semibold pl-[10px] mt-[15px] flex flex-col items-start gap-[20px] overflow-auto ">
                         {userdata.map((ud) => ((<div className="chatlist" onClick={(e) => personclick(e, ud._id)}>
 
                             <div className="cursor-pointer">{ud.name}</div>
@@ -194,7 +203,7 @@ function ChatId(props) {
 
                     </div>
                 </div>
-                <div className="mainchatbox w-[43%] relative">
+                <div className="mainchatbox w-[43%] min-w-[7rem] relative">
                     <>
 
 
@@ -217,8 +226,8 @@ function ChatId(props) {
                                                     {/*</div>*/}
                                                     <div className="flex flex-row-reverse w-full">
                                                         <div
-                                                            className="px-[8px] py-[8px] bg-[#0452D8] text-[#FAFAFA] text-[14px] rounded-[12px] max-w-[50%]">
-                                                            <p className="messagepara font-semibold">{msg.message}</p>
+                                                            className="px-[8px] py-[6px] bg-[#0452D8] text-[#FAFAFA] text-[14px] rounded-[8px] max-w-[65%]">
+                                                            <p className="messagepara">{msg.message}</p>
                                                         </div>
                                                     </div>
 
@@ -236,8 +245,8 @@ function ChatId(props) {
                                                             {/*</div>*/}
                                                             <div className="flex w-full">
                                                                 <div
-                                                                    className="px-[8px] py-[8px] bg-[#FFFFFF] text-[rgba(0,0,0,0.8)] text-[14px] rounded-[12px] max-w-[50%]">
-                                                                    <p className="messagepara font-semibold">{msg.message}</p>
+                                                                    className="px-[8px] py-[6px] bg-[#FFFFFF] text-[rgba(0,0,0,0.8)] text-[14px] rounded-[8px] max-w-[65%]">
+                                                                    <p className="messagepara">{msg.message}</p>
                                                                 </div>
                                                             </div>
 

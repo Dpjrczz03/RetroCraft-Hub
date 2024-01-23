@@ -3,21 +3,23 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import axios from "axios";
 import {useSession} from "next-auth/react";
-import Nav from "@/components/nav";
 import Dashboardnav from "@/components/dashboardnav";
-import Whoareyou from "@/components/whoareyou";
-import Personalinfo from "../components/personalinfo";
-import {redirect} from "next/navigation";
-import Statusitem from "@/components/statusitem";
 import Jobcard from "@/components/jobcard";
 import Bigcard from "@/components/bigcard";
 import Image from "next/image";
 
 function Admindashboard(props) {
+    const[activenav, setActivenav]=useState("")
     const [master,setMaster]=useState(null)
     const {data: session} = useSession()
+    const router = useRouter()
     const [userinfo, setuserinfo] = useState(null)
     const [roleinfo, setroleinfo] = useState(null)
+    useEffect(() => {
+        if (router.pathname==='/admindashboard'){
+            setActivenav("home")
+        }
+    }, [router])
     useEffect(() => {
         axios.get('api/personalinfo').then((data) => {
             const hero = (data.data).find(item=>item.email===session?.user?.email)
@@ -34,7 +36,6 @@ function Admindashboard(props) {
     if (noti > 9) {
         setnoti("9+")
     }
-    const router = useRouter()
     const [roledata, setRoledata] = useState([])
     const [jobdata, setjobdata] = useState([])
     const [currname, setcurrname] = useState(null)
@@ -60,64 +61,9 @@ function Admindashboard(props) {
 
 
     }, [])
-    //  const getroledata=()=>{
-    //      // console.log("function called")
-    //      for(var j=0;j<roledata.length;j++){
-    //          console.log(roledata[j].email)
-    //          setx(x+1)
-    //          if (roledata[j].email === session?.user?.email){
-    //              setcurrrole(roledata[j].name)
-    //
-    //              console.log(roledata[j].name)
-    //              break;
-    //          }
-    //      }
-    //  }
-    //
-    //
-    // const getjobdata=()=>{
-    //      for(var i=0;i<jobdata.length;i++){
-    //          // console.log(jobdata[i].user)
-    //          setx(x+1)
-    //          if (jobdata[i].email === session?.user?.email){
-    //              setcurrname(jobdata[i].name)
-    //              console.log(jobdata[i].name)
-    //              break;
-    //          }
-    //      }
-    //  }
-    //
-    //  if(x<5) {
-    //      getjobdata()
-    //      getroledata()
-    //  }
     return (
-        // <>
-        //     <Nav/>
-        //     <div className="flex flex-col items-center gap-10">
-        //     <div className="flex justify-center items-center">
-        //         this is admin dashboard
-        //     </div>
-        //     <div className="p-3 bg-gray-400 jobbtn" onClick={createjob}>
-        //         Add a job
-        //     </div>
-        //     <div className="flex gap-5 items-center justify-center">
-        //         {jobs.map(job =>((job.user===(session?.user?.email))?(
-        //             <div className="flex flex-col ">
-        //                 <div className="font-bold text-xl">{job.jobtitle}</div>
-        //                 <div>{job.company?job.company:null}</div>
-        //                 <div>Stipend: Rs.{job.stipend}/month</div>
-        //                 <div>{job.location}</div>
-        //                 <div>Openings: {job.opening}</div>
-        //             </div>
-        //         ):(<></>)))}
-        //     </div>
-        // </div>
-        //     </>
-
-
         <div className="admindashboard h-screen w-screen flex">
-            <Dashboardnav/>
+            <Dashboardnav activenav = {activenav}/>
             <div className="dashpage w-full gap-10 pl-[38px] pr-[20px] flex flex-col overflow-auto pb-[100px]">
                 <div className="dashnav flex  pt-[20px]  gap-2 justify-between items-center w-full">
                     <div className={"text-[40px] font-bold"}>Welcome, {master}👋</div>

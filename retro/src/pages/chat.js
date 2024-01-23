@@ -6,11 +6,23 @@ import Chatnav from "@/components/chatnav";
 
 function Chat(props) {
     const {data: session} = useSession()
+    const[activenav, setActivenav]=useState("")
     const personclick = (e, userid) => {
 
         router.push(`/chat/${cuser._id}--${userid}`)
     }
+
     const router = useRouter()
+    useEffect(()=>{
+        if (router.pathname==='/chat'){
+            setActivenav("chat")
+        }
+    },[router])
+    useEffect(()=>{
+        if(session === null){
+            router.push('/loginpage')
+        }
+    },[session])
     const [cuser, setcuser] = useState(null)
     const [userdata, setUserdata] = useState([])
     useEffect(() => {
@@ -23,7 +35,7 @@ function Chat(props) {
         <>
 
         <div className="chatmaincontainer relative">
-            <div className="absolute top-0 left-0"><Chatnav/></div>
+            <div className="absolute top-0 left-0"><Chatnav activenav = {activenav}/></div>
        <div className="leftchat w-[22%]">
                     <div className="text-[32px] font-bold">
                         Chats

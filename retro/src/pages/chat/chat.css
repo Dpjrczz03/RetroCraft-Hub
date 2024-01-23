@@ -1,10 +1,11 @@
 
 .chatmaincontainer {
+    padding-left: 5rem;
     gap: 20px;
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
 }
@@ -16,27 +17,11 @@
     overflow: auto;
     gap: 1rem;
     height: 100vh;
-    /*border: 1px solid black;*/
 }
 
 .chatlist {
     padding-inline: 10px;
-    /*display: flex;*/
-    /*flex-direction: column;*/
 }
-
-/*.chatbox{*/
-/*    border: 1px solid black;*/
-/*}*/
-
-/*.chatbox::-webkit-scrollbar {*/
-/*    display: none;*/
-/*}*/
-
-/*.chatbox {*/
-/*    border-top: 1px solid rgba(0,0,0,0.6);*/
-/*}*/
-
 .mainchatbox {
     padding-top: 15px;
     border-radius: 15px;
@@ -52,4 +37,13 @@
 .chatsend::placeholder{
     font-size: 16px;
     color: #49454F;
+}
+.messagepara{
+    font-weight: 500;
+}
+.nav-list li div{
+    cursor: pointer;
+}
+.nav-list1 li div{
+    cursor: pointer;
 }

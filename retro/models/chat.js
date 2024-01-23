@@ -6,5 +6,5 @@ const ModelSchema = new Schema({
     email:{type:String,required:true},
 
 
-})
+},{timestamps: true})
 export const Chat = models.Chat ||model('Chat',ModelSchema)

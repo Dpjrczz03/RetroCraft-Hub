@@ -2,74 +2,10 @@ import React, {useState} from 'react';
 import {signOut} from "next-auth/react";
 import {useRouter} from "next/router";
 function Dashboardnav(props) {
+     const activenav = props.activenav
     const router = useRouter()
-    const [aboutclass, setaboutclass] = useState("")
-    const [homeclass, sethomeclass] = useState("")
-    const [blogclass, setblogclass] = useState("")
-    const [anotherclass, setanotherclass] = useState("")
-    const [pageclass, setpageclass] = useState("")
-    const [settingclass, setsettingclass] = useState("")
-
-    function homeclasshandler() {
-        sethomeclass("active")
-        setaboutclass("")
-        setblogclass("")
-        setanotherclass("")
-        setpageclass("")
-        setsettingclass("")
-    }
-
-    function aboutclasshandler() {
-        sethomeclass("")
-        setaboutclass("active")
-        setblogclass("")
-        setanotherclass("")
-        setpageclass("")
-        setsettingclass("")
-    }
-
-    function blogclasshandler() {
-        sethomeclass("")
-        setaboutclass("")
-        setblogclass("active")
-        setanotherclass("")
-        setpageclass("")
-        setsettingclass("")
-        router.push('/chat')
-
-    }
-
-    function anotherclasshandler() {
-        sethomeclass("")
-        setaboutclass("")
-        setblogclass("")
-        setanotherclass("active")
-        setpageclass("")
-        setsettingclass("")
-    }
-
-    function pageclasshandler() {
-        sethomeclass("")
-        setaboutclass("")
-        setblogclass("")
-        setanotherclass("")
-        setpageclass("active")
-        setsettingclass("")
-    }
-
-    function settingclasshandler() {
-        sethomeclass("")
-        setaboutclass("")
-        setblogclass("")
-        setanotherclass("")
-        setpageclass("")
-        setsettingclass("active")
-
-    }
-
     return (
-
-        <nav>
+        <nav className="">
             <div className="navtitledash fy">
                 <div className="kaalu"></div>
                 <svg onClick={()=>signOut()} width="205" height="54" viewBox="0 0 205 54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,11 +32,12 @@ function Dashboardnav(props) {
                         fill="#413659"/>
                 </svg>
 
+
             </div>
             <ul className="nav-list">
-                <li className={homeclass} onClick={homeclasshandler}>
+                <li className={(activenav==="home")?"active":""}>
 
-                    <div>{(homeclass === "active") ? (
+                    <div>{((activenav === "home")) ? (
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 20V9.49998L12 4.21198L19 9.49998V20H13.808V13.615H10.192V20H5Z" fill="black"/>
                         </svg>
@@ -111,9 +48,10 @@ function Dashboardnav(props) {
                     )}</div>
                     <div>Dashboard</div>
 
+
                 </li>
-                <li className={aboutclass} onClick={aboutclasshandler}>
-                    <div>{(aboutclass === "active") ? (
+                <li className={(activenav==="search")?"active":""}>
+                    <div>{((activenav === "search")) ? (
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M19.6 21L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16C7.68333 16 6.146 15.3707 4.888 14.112C3.63 12.8533 3.00067 11.316 3 9.5C3 7.68333 3.62933 6.146 4.888 4.888C6.14667 3.63 7.684 3.00067 9.5 3C11.3167 3 12.8543 3.62933 14.113 4.888C15.3717 6.14667 16.0007 7.684 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L21 19.6L19.6 21ZM9.5 14C10.75 14 11.8127 13.5627 12.688 12.688C13.5633 11.8133 14.0007 10.7507 14 9.5C14 8.25 13.5627 7.18767 12.688 6.313C11.8133 5.43833 10.7507 5.00067 9.5 5C8.25 5 7.18767 5.43767 6.313 6.313C5.43833 7.18833 5.00067 8.25067 5 9.5C5 10.75 5.43767 11.8127 6.313 12.688C7.18833 13.5633 8.25067 14.0007 9.5 14Z"
@@ -129,9 +67,10 @@ function Dashboardnav(props) {
 
                     )}</div>
                     <div>Search Crew</div>
+
                 </li>
-                <li className={blogclass} onClick={blogclasshandler}>
-                    <div>{(blogclass === "active") ? (
+                <li className={(activenav==="chat")?"active":""} onClick={()=>router.push('/chat')}>
+                    <div>{((activenav === "chat")) ? (
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M9.23077 0C4.19723 0 0 3.46154 0 7.84615C0 10.0892 1.22769 12.0443 2.97138 13.4714C2.85879 14.2297 2.55051 14.9455 2.07692 15.5483C1.88365 15.7957 1.68168 16.0361 1.47138 16.2692C1.36252 16.384 1.26571 16.5095 1.18246 16.644C1.12985 16.7298 1.04769 16.8258 1.00985 17.0197C0.971077 17.2126 1.02369 17.5302 1.18246 17.7692L1.29785 17.9714L1.52862 18.0868C2.33631 18.4902 3.20862 18.4191 4.00985 18.2022C4.81015 17.9843 5.58 17.6114 6.31754 17.2209C7.05415 16.8314 7.75477 16.4234 8.30769 16.1252C8.38523 16.0837 8.43508 16.0735 8.50985 16.0385C9.96554 18.0397 12.6314 19.3846 15.6055 19.3846C15.6342 19.3883 15.6609 19.3846 15.6923 19.3846C16.8923 19.3846 20.7692 23.3483 23.0769 21.7791C23.1692 21.4108 21.048 20.4868 20.9418 17.7406C22.7483 16.464 23.9142 14.5652 23.9142 12.4615C23.9142 9.34892 21.444 6.77723 18.1449 5.856C17.1009 2.45908 13.4714 0 9.23077 0ZM9.23077 1.84615C13.428 1.84615 16.6154 4.66154 16.6154 7.84615C16.6154 11.0308 13.428 13.8462 9.23077 13.8462C8.48123 13.8462 8.05108 14.1526 7.44185 14.4812C6.83262 14.8089 6.13385 15.216 5.45169 15.5769C4.86092 15.8889 4.29785 16.1289 3.77908 16.2978C4.284 15.5686 4.81108 14.6095 4.90338 13.2692L4.93292 12.7495L4.5 12.4329C2.85508 11.28 1.84615 9.62123 1.84615 7.84615C1.84615 4.66154 5.03354 1.84615 9.23077 1.84615Z"
@@ -156,9 +95,10 @@ function Dashboardnav(props) {
 
                     )}</div>
                     <div>Chat</div>
+
                 </li>
-                <li className={anotherclass} onClick={anotherclasshandler}>
-                    <div>{(anotherclass === "active") ? (
+                <li className={(activenav==="ongoing")?"active":""}>
+                    <div>{((activenav === "ongoing")) ? (
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M14.7274 6.727H14.0004V0H4.91044C4.00544 0 3.27344 0.732 3.27344 1.636V22.364C3.27344 23.268 4.00544 24 4.90944 24H19.0914C19.9954 24 20.7274 23.268 20.7274 22.364V6.727H14.7274ZM14.1824 17.182H7.09044V15.818H14.1804V17.182H14.1824ZM16.9094 13.909H7.09144V12.545H16.9094V13.909ZM16.9094 10.636H7.09144V9.273H16.9094V10.636ZM14.7274 6H20.7274L14.7274 0V6Z"
@@ -175,10 +115,11 @@ function Dashboardnav(props) {
 
 
                     )}</div>
-                    <div className="bad">Ongoing Projects</div>
+                    <div>Ongoing Projects</div>
+
                 </li>
-                <li className={pageclass} onClick={pageclasshandler}>
-                    <div>{(pageclass === "active") ? (
+                <li className={(activenav==="notification")?"active":""}>
+                    <div>{((activenav === "notification")) ? (
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M12 22C13.1 22 14 21.1 14 20H10C10 20.5304 10.2107 21.0391 10.5858 21.4142C10.9609 21.7893 11.4696 22 12 22ZM18 16V11C18 7.93 16.36 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.63 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z"
@@ -195,10 +136,11 @@ function Dashboardnav(props) {
 
 
                     )}</div>
-                    <div>Notification</div>
+                    <div>Notifications</div>
+
                 </li>
-                <li className={settingclass} onClick={settingclasshandler}>
-                    <div>{(settingclass === "active") ? (
+                <li className={(activenav==="setting")?"active":""}>
+                    <div>{((activenav === "setting")) ? (
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M19.4997 12C19.4997 11.77 19.4897 11.55 19.4697 11.32L21.3297 9.91C21.7297 9.61 21.8397 9.05 21.5897 8.61L19.7197 5.38C19.5998 5.16818 19.4058 5.00814 19.1751 4.93062C18.9444 4.8531 18.6931 4.86356 18.4697 4.96L16.3197 5.87C15.9497 5.61 15.5597 5.38 15.1497 5.19L14.8597 2.88C14.7997 2.38 14.3697 2 13.8697 2H10.1397C9.62967 2 9.19967 2.38 9.13967 2.88L8.84967 5.19C8.43967 5.38 8.04966 5.61 7.67967 5.87L5.52967 4.96C5.06967 4.76 4.52967 4.94 4.27967 5.38L2.40967 8.62C2.15967 9.06 2.26967 9.61 2.66967 9.92L4.52967 11.33C4.48821 11.779 4.48821 12.231 4.52967 12.68L2.66967 14.09C2.26967 14.39 2.15967 14.95 2.40967 15.39L4.27967 18.62C4.52967 19.06 5.06967 19.24 5.52967 19.04L7.67967 18.13C8.04966 18.39 8.43967 18.62 8.84967 18.81L9.13967 21.12C9.19967 21.62 9.62967 22 10.1297 22H13.8597C14.3597 22 14.7897 21.62 14.8497 21.12L15.1397 18.81C15.5497 18.62 15.9397 18.39 16.3097 18.13L18.4597 19.04C18.9197 19.24 19.4597 19.06 19.7097 18.62L21.5797 15.39C21.8297 14.95 21.7197 14.4 21.3197 14.09L19.4597 12.68C19.4897 12.45 19.4997 12.23 19.4997 12ZM12.0397 15.5C10.1097 15.5 8.53967 13.93 8.53967 12C8.53967 10.07 10.1097 8.5 12.0397 8.5C13.9697 8.5 15.5397 10.07 15.5397 12C15.5397 13.93 13.9697 15.5 12.0397 15.5Z"
@@ -216,10 +158,10 @@ function Dashboardnav(props) {
 
                     )}</div>
                     <div>Settings</div>
+
                 </li>
             </ul>
         </nav>
-
     );
 }
 
