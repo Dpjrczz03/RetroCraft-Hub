@@ -115,7 +115,7 @@ function Admindashboard(props) {
                                         {userinfo?.name}
                                     </div>
                                     <div className="titledash">
-                                        {roleinfo?.role}
+                                        {(roleinfo?.role)?((roleinfo?.role)[0].toUpperCase()+(roleinfo?.role).slice(1,(roleinfo?.role).length)):("")}
                                     </div>
                                 </div>
                             </div>
