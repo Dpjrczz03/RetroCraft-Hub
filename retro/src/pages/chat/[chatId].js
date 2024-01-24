@@ -104,7 +104,7 @@ function ChatId(props) {
 
         axios.get('../api/chat').then((data) => {
 
-            // console.log("chala hai ye bhen ka loda")
+            // console.log("chala hai ye bhen ka lodtdrta")
 
             setChatdata(data.data)
 
