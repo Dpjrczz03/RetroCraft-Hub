@@ -17,7 +17,7 @@ export default async function handle(req, res) {
     const method = req.method;
     await mongooseConnect()
     if (method === 'POST') {
-        const {chatid, message, email,time} = req.body;
+        const {chatid, messagetemp: message, email,time} = req.body;
 
 
 

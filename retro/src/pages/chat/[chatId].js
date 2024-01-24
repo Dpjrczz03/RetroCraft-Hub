@@ -151,7 +151,8 @@ function ChatId(props) {
         const email = session?.user?.email
         var hours = new Date().getHours()
         var min = new Date().getMinutes()
-
+        var messagetemp = message
+        setmessage("")
 
         var time = `${hours%24}:${min%60}`
         if (hours<10){
@@ -163,12 +164,13 @@ function ChatId(props) {
         if(hours<10 && min<10){
             time = `0${hours%24}:0${min%60}`
         }
-        const messagedata = {chatid, message, email,time}
+        const messagedata = {chatid, messagetemp, email,time}
         if (message !== "") {
             await axios.post('../api/chat', messagedata)
+            // setmessage("")
             scrollToBottom()
 
-            setmessage("")
+
         }
 
 
