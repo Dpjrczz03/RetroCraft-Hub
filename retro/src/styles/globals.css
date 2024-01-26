@@ -922,3 +922,30 @@ nav {
      text-align: right;
     color: #f3f3f3;
 }
+.cardcontainer{
+    cursor: default;
+    transition:0.15s ease-in-out;
+}
+.cardcontainer:hover{
+    transform: scale(1.015);
+}
+.cardcontainer:hover{
+    color: white;
+}
+.btn, .btn1{
+    transition: 0.15s ease-in-out;
+}
+.cardcontainer:hover .btn{
+    color: white;
+    background: rgba(255,255,255,0.2);
+}
+.cardcontainer:hover .btn1{
+    color: rgba(0,0,0,0.4);
+    background: rgba(255,255,255,0.4);
+}
+.web{
+    transition: 0.15s ease-in-out;
+}
+.cardcontainer:hover .web{
+    color: rgba(0,0,0,0.6);
+}

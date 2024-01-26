@@ -3,7 +3,6 @@ import {mongooseConnect} from "../../../lib/mongoose";
 import {Chat} from "../../../models/chat";
 // import {pusherServer} from "../../../lib/pusher";
 import PusherServer from "pusher";
-
 const pusherServer = new PusherServer({
     appId: process.env.PUSHER_APP_ID,
     key: process.env.NEXT_PUBLIC_PUSHER_KEY,

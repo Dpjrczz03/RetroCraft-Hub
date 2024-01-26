@@ -9,10 +9,11 @@ import Chatnav from "@/components/chatnav";
 
 function ChatId(props) {
     const {data: session} = useSession()
-    const[activenav, setActivenav]=useState("")
+    const [tempmessage, settempmessage]=useState("")
+    const [activenav, setActivenav] = useState("")
     const router = useRouter()
     useEffect(() => {
-        if (router.pathname==='/chat/[chatId]'){
+        if (router.pathname === '/chat/[chatId]') {
             setActivenav("chat")
         }
     }, [router])
@@ -104,7 +105,6 @@ function ChatId(props) {
 
         axios.get('../api/chat').then((data) => {
 
-            // console.log("chala hai ye bhen ka lodtdrta")
 
             setChatdata(data.data)
 
@@ -135,12 +135,8 @@ function ChatId(props) {
             )))
 
             if (ouserid) {
-                // console.log("meoedfaf")
                 setuser2(cd.find((i) => (i._id === ouserid)))
-
             }
-
-
         })
 
 
@@ -151,34 +147,34 @@ function ChatId(props) {
         const email = session?.user?.email
         var hours = new Date().getHours()
         var min = new Date().getMinutes()
+
         var messagetemp = message
+
+        var time = `${hours % 24}:${min % 60}`
+        if (hours < 10) {
+            time = `0${hours % 24}:${min % 60}`
+        }
+        if (min < 10) {
+            time = `${hours % 24}:0${min % 60}`
+        }
+        if (hours < 10 && min < 10) {
+            time = `0${hours % 24}:0${min % 60}`
+        }
+        settempmessage({chatid, message, email, time})
+        setfilterroomdata()
         setmessage("")
-
-        var time = `${hours%24}:${min%60}`
-        if (hours<10){
-            time = `0${hours%24}:${min%60}`
-        }
-        if (min<10){
-            time = `${hours%24}:0${min%60}`
-        }
-        if(hours<10 && min<10){
-            time = `0${hours%24}:0${min%60}`
-        }
-        const messagedata = {chatid, messagetemp, email,time}
+        const messagedata = {chatid, messagetemp, email, time}
         if (message !== "") {
+
             await axios.post('../api/chat', messagedata)
-            // setmessage("")
+            settempmessage("")
             scrollToBottom()
-
-
         }
-
-
     }
     return (
         <>
             <div className="absolute left-0 top-0">
-                <Chatnav activenav = {activenav}/>
+                <Chatnav activenav={activenav}/>
             </div>
             <div className="chatmaincontainer">
                 <div className="leftchat w-[22%]">
@@ -252,7 +248,8 @@ function ChatId(props) {
                                                                 <div
                                                                     className="px-[8px] py-[6px] bg-[#FFFFFF] text-[rgba(0,0,0,0.8)] text-[14px] rounded-[8px] max-w-[65%] flex flex-col min-w-[80px]">
                                                                     <p className="messagepara">{msg.message}</p>
-                                                                    <div className="time w-full font-semibold text-[10px]">{msg.time}</div>
+                                                                    <div
+                                                                        className="time w-full font-semibold text-[10px]">{msg.time}</div>
                                                                 </div>
                                                             </div>
 

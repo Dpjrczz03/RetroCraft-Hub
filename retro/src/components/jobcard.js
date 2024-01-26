@@ -7,24 +7,24 @@ function Jobcard(props) {
     const currname = props.currname
     const currrole = props.currrole
     return (
-        <div className="bg-white rounded-[10px] flex flex-col cardcontainer w-[250px] px-[12px] py-[12px] gap-[13px]">
+        <div className="bg-white hover:bg-[#005EFE] rounded-[20px] flex flex-col cardcontainer w-[250px] px-[12px] py-[12px] gap-[13px]">
             <div className="carditem flex items-start justify-between w-full">
                 <div>{(session?.user?.image)?(<img className="rounded-full dashimg " src={session?.user?.image}/>):(<Image className="rounded-full dashimg"
                                                src="/image 11.png" width={50}
                                                height={50}/>)}</div>
                 <div
-                    className="text-[#FF9725] bg-[#FFF7E1] text-[12px] font-bold py-[2px] px-[18px] rounded-[5px]">Video
+                    className="btn btn1 text-[#FF9725] bg-[#FFF7E1] text-[12px] font-bold py-[2px] px-[18px] rounded-[5px]">Video
                     Editor
                 </div>
             </div>
             <div className="carditem flex flex-col ">
                 <div className="text-[16 px] font-bold">{currname}</div>
-                <div className="secondary">India</div>
+                <div className="text-[12px]">India</div>
             </div>
             <div className="carditem flex items-center justify-between">
                 <div className="text-[12px] font-medium">Rs. 12,000-25,000</div>
                 <div
-                    className="flex items-center justify-between bg-[#F4F6F8] px-[12.5px] py-[4px] rounded-[5px] gap-[5px]">
+                    className="btn flex items-center justify-between bg-[#F4F6F8] px-[12.5px] py-[4px] rounded-[5px] gap-[5px]">
                     <div>
                         <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -35,12 +35,12 @@ function Jobcard(props) {
                                 fill="black" fill-opacity="0.6"/>
                         </svg>
                     </div>
-                    <div className="secondary font-semibold">dhruv.com</div>
+                    <div className=" text-[12px] web font-semibold">dhruv.com</div>
                 </div>
             </div>
             <div className="carditem flex items-center justify-between">
 
-                <div className="bg-[#F4F6F8] p-[4.5px] rounded-[5px] cursor-pointer">
+                <div className="btn bg-[#F4F6F8] p-[4.5px] rounded-[5px] cursor-pointer">
                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M19 5.5V20.7417L12.697 18.0404L12.5 17.956L12.303 18.0404L6 20.7417V5.5C6 5.08381 6.14245 4.74014 6.44125 4.44185C6.74047 4.14315 7.0846 4.00057 7.50033 4H17.5C17.9162 4 18.2604 4.14248 18.5594 4.44155C18.8585 4.74061 19.0005 5.08424 19 5.49939V5.5Z"
@@ -49,8 +49,8 @@ function Jobcard(props) {
                 </div>
 
 
-                    <div className="py-[4.5px] px-[9%] bg-[#F4F6F8] rounded-[5px] cursor-pointer">Send JD</div>
-                    <div className="py-[4.5px] px-[9%] bg-[#F4F6F8] rounded-[5px] cursor-pointer">Apply</div>
+                    <div className="btn py-[4.5px] px-[9%] bg-[#F4F6F8] rounded-[5px] cursor-pointer text-[rgba(0,0,0,0.8)]">Send JD</div>
+                    <div className="btn py-[4.5px] px-[9%] bg-[#F4F6F8] rounded-[5px] cursor-pointer text-[rgb(0,0,0,0.8)]">Apply</div>
 
             </div>
 
