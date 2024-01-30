@@ -161,7 +161,6 @@ function ChatId(props) {
             time = `0${hours % 24}:0${min % 60}`
         }
         settempmessage({chatid, message, email, time})
-        setfilterroomdata()
         setmessage("")
         const messagedata = {chatid, messagetemp, email, time}
         if (message !== "") {
